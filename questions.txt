@@ -1,0 +1,233 @@
+PART A
+
+Question 1:
+
+Find the count of customers who have completed their KYC check.
+
+Output format: The output should be just a number
+
+Example: 99
+
+ 
+
+Question 2:
+
+Retrieve the customerID, customerName and income of customers having income between 5 lakhs and 10 lakhs [exclusive of both the values] in descending order of income.
+
+Output format:
+
+The output document of the above query should look like the sample given below:
+
+{"customerID":87765, "customerName":{"firstname":"Tom","lastname":"Jake"}, "income":56790}
+
+ 
+
+Question 3:
+
+Fetch the values of customerID, customerName and email fields of customers who have not provided his/her email
+
+Note: email field can contain null value also
+
+Output format:
+
+The output document of the above query should look like the sample given below:
+
+{"customerID":679896, "customerName":{"firstname":"Alice","lastname":"Wonder"}, "contact":{"email":null}}
+
+{"customerID":987548, "customerName":{"firstname":"Tom","lastname":"Jake"},"contact":{ }}
+
+ 
+
+Question 4:
+
+Retrieve the customerID, firstname of the customers who have not taken loan at all.
+
+Hint: Check for the existence of loanDetails field.
+
+Output format:
+
+The output document of the above query should look like the sample given below:
+
+{"customerID":679896, "customerName":{"firstname":"Alice"}}
+
+ 
+
+Question 5:
+
+Retrieve the customerID and accDetails of the customers who have accType=’savings’ in branch=’El Monte’
+
+Output format:
+
+The output document of the above query should look like the sample given below:
+
+{ "customerID" : 18153534, "accDetails" : [ { "accNum" : 3489165, "accType" : "savings", "branch" : "El Monte", "interest" : 6, "balance" : 34980 } ] }
+
+ 
+
+Question 6:
+
+Retrieve the customerID of the customer whose firstname starts with ‘Tanek’ (case-sensitive)
+
+Output format:
+
+The output document of the above query should look like the sample given below:
+
+{"customerID":679896}
+
+ 
+
+Question 7:
+
+Retrieve the customerID, customerName and loanDetails of customers who have taken only one loan.
+
+Output format:
+
+The output document of the above query should look like the sample given below:
+
+{"customerID":679896, "customerName":{"firstname":"Alice","lastname":"Wonder"}, "loanDetails":[{"loanNum":"928dd7eb","type":"house","interest":11.5,"amount":600000,"tenure":85}]}
+
+ 
+
+Question 8:
+
+Display along with "_id", a new field - "custName", by concatenating customer firstname and customer lastname fields with a blank space as the delimiter between the fields.
+
+Example:
+
+"customerName": {"firstname": "Kyle","lastname":"Foreman"}
+
+After concatenating, a new field should be added to the documents as below:
+
+"custName": "Kyle Foreman"
+
+Output Format:
+
+{ "_id" : ObjectId("5f0848184166436271b245c2"), "custName" : "Flexin Golden" }
+
+ 
+
+Question 9:
+
+Retrieve the total sum (use TotalLoAmnt as alias) of loan amount according to loan type
+
+Output Format:
+
+The output document of the above query should look like the sample given below:
+
+{"_id":"house", "TotalLoAmnt":99}
+
+ 
+
+Question 10:
+
+Retrieve the average account balance (use AvgAccBal as alias) for each acctype that have balance >= 100000
+
+Output Format:
+
+The output document of the above query should look like the sample given below:
+
+{"_id":"savings", "AvgAccBal":99}
+
+ 
+
+Question 11:
+
+Output each element of accDetails as a separate document along with customerID and customerName only in a new collection named “CustomerAccDetails”
+
+Output Format:
+
+The documents in “CustomerAccDetails” collection should be of the below format:
+
+{"customerID":6547809, "customerName":{"firstname":"Tom","lastname":"Jake"}, "accDetails": {"accNum":3489161,"accType":"savings","branch":"Vorst","interest":9,"balance":897600} }
+
+ 
+
+Question 12:
+
+Retrieve the customerID and customerName who have born (use dob field) in the year ‘1991’ in the descending order of customerName
+
+Output Format:
+
+The output document of the above query should look like the sample given below:
+
+{"customerID":657899, "customerName":{"firstname":"Tom","lastname":"Jake"}}
+
+ 
+
+PART B
+
+Question 1:
+
+Create another collection named “member” in the same “Bank” database and insert the 5 documents given below.
+
+{"memID": 16895,"memName":{"firstname": " Thomas","lastname": " Cameron"},"income": 115700, "nationalIDNum": "KEB25PJH6ER", "memshipYears":12, "sharepercent":10, "KYCcheck":false,"accDetails":[{"accNum": 3489166,"accType":"savings","interest":6,"balance":56940}],"loanDetails":[{"loanNum":"8d5a25b7","type":"personal","interest":11.5,"amount":200000,"tenure":42}]}
+
+ 
+
+{"memID": 32977," memName":{"firstname": "Sofia","lastname":"Myers"}, "income": 230000, "nationalIDNum": "YDD16CRG7SC","memshipYears":5, "sharepercent":10, "KYCcheck":true,"accDetails":[{"accNum":3489171,"accType":"current","interest":9,"balance":12398}],"loanDetails":[{"loanNum":"959ef87b","type":"house","interest":11.5,"amount":900000,"tenure":72}]}
+
+ 
+
+{"memID": 24137," memName":{"firstname": "Wilson","lastname": "Morris"},"income": 800000, "nationalIDNum": "QOZ73SKE7KC","memshipYears":10,"sharepercent":10, "KYCcheck":false,"accDetails":[{"accNum": 3489172,"accType":"savings" ,"interest":6,"balance":234500}]}
+
+ 
+
+{"memID":23034,"memName":{"firstname":"Andrianna","lastname":"Henderson"},"income":1908900, "nationalIDNum":"BTM91UHF8SP","memshipYears":15,"sharepercent":10, "KYCcheck":true,"accDetails":[{"accNum":3489173,"accType":"savings","interest":6,"balance":89760}]}
+
+ 
+
+{"memID":37464,"memName":{"firstname":"Antony","lastname":"Miller"},"income":890000,"nationalIDNum": "KJH49EUK2NV","memshipYears":18,"sharepercent":10, "KYCcheck":false,"accDetails":[{"accNum": 3489180,"accType":"savings","interest":6,"balance":1230},{"accNum":3489188,"accType":"current","interest":9,"balance":67980}],"loanDetails":[{"loanNum":"fe111ff8","type":"house","interest":11.5,"amount":500000,"tenure":36},{"loanNum":"5eb7a297","type":"personal","interest":6,"amount":600000,"tenure":72}]}
+
+ 
+
+Question 2:
+
+By default, the members of the Bank have a sharepercent value of 10. As per new rules laid out by the Bank, the sharepercent value is reduced by 5 for members having memshipYears <= 5.
+
+Write a command to update the documents with the above criteria.
+
+Example:
+
+Before update:
+
+{"memID": 32977," memName":{"firstname": "Sofia","lastname":"Myers"},"nationalIDNum": "YDD16CRG7SC","memshipYears":5, "sharepercent":10, "KYCcheck":true,"accDetails":[{"accNum":3489171,"accType":"current","interest":9,"balance":12398}],"loanDetails":[{"loanNum":"959ef87b","type":"house","interest":11.5,"amount":900000,"tenure":72}]}
+
+After update:
+
+{"memID": 32977," memName":{"firstname": "Sofia","lastname":"Myers"},"nationalIDNum": "YDD16CRG7SC","memshipYears":5, "sharepercent":5, "KYCcheck":true,"accDetails":[{"accNum":3489171,"accType":"current","interest":9,"balance":12398}],"loanDetails":[{"loanNum":"959ef87b","type":"house","interest":11.5,"amount":900000,"tenure":72}]}
+
+ 
+
+Question 3:
+
+A member with memID = 1000985 needs to be updated with the following details:
+
+{"income": 1000985, "nationalIDNum": "KEB25PJH6ER", "memshipYears":6, "KYCcheck": true}
+
+Note: Make sure that if there is no document corresponding to the above memID, insert one with the above given details.
+
+Only update operation should be used to solve the above question.
+
+ 
+
+Question 4:
+
+For all those members who have not completed their KYCcheck (KYCcheck = false), remove the nationalIDNum field from their documents
+
+ 
+
+Question 5:
+
+A member with memID = 16895 has opened another loan. Update his/her loanDetails with the following details:
+
+{"loanNum":"1a896835","type":"gold","interest":16,"amount":700000,"tenure":90}
+
+Note: Make sure that the above loanDetails are unique while adding
+
+ 
+
+Question 6:
+
+Note: Perform the below delete operation at the end, after the above 5 queries are completed.
+
+Delete all the members who are having income < 200000
