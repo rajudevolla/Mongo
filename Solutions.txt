@@ -1,8 +1,11 @@
 Q1:db.Customer.find({KYCcheck:true}).count()
-Q2:db.Customer.find({income:{$gt:500000},income:{$lt:1000000}},{cusomterID:1,customerName:1,income:-1,_id:0}).sort({income:-1})
+Q2:db.Customer.find({income:{$gt:500000},income:{$lt:1000000}},{cusomterID:1,customerName:1,income:1,_id:0}).sort({income:-1})
 Q3:db.Customer.find({$or:[{'contact.email':"null"},{'contact.email':null}]},{_id:0,cusotmerID:1,customerName:1,contact:1});
 Q4:db.Customer.find({loanDetails:{$exists:false}},{_id:0,customerID:1,'customerName.firstname':1})
 db.Customer.find({accDetails:{$elemMatch:{accType:"savings",branch:"El Monte"}}},{_id:0,customerID:1,accDetails:1});
 db.Customer.find({'customerName.firstname':/^Tanek/},{_id:0,customerID:1})
 db.Customer.find({loanDetails:{$size:1}},{_id:0,customerID:1,customerName:1,loandDetails:1})
 db.Customer.aggregate({$project:{custName:{$concat:["$customerName.firstname"," ","$customerName.lastname"]}}});
+db.Customer.aggregate([  {$unwind:"$loanDetails"},  {$group:{_id:"$loanDetails.type",TotalLoAmt:{$sum:"$loanDetails.amount"}}}]);
+ db.Customer.aggregate([ {$unwind:"$accDetails"}, {$match:{'accDetails.balance':{$gte:100000}}},{$group:{_id:"$accDetails.accType",AvgAccBal{$avg:"$accDetails.balance"}}}]);
+db.Customer.aggregate([ {$unwind:"$accDetails"}, {$project:{_id:0,customerID:1,customerName:1,accDetails:1}} ])
