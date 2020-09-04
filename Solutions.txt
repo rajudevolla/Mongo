@@ -9,3 +9,15 @@ db.Customer.aggregate({$project:{custName:{$concat:["$customerName.firstname"," 
 db.Customer.aggregate([  {$unwind:"$loanDetails"},  {$group:{_id:"$loanDetails.type",TotalLoAmt:{$sum:"$loanDetails.amount"}}}]);
  db.Customer.aggregate([ {$unwind:"$accDetails"}, {$match:{'accDetails.balance':{$gte:100000}}},{$group:{_id:"$accDetails.accType",AvgAccBal{$avg:"$accDetails.balance"}}}]);
 db.Customer.aggregate([ {$unwind:"$accDetails"}, {$project:{_id:0,customerID:1,customerName:1,accDetails:1}} ])
+
+PART B
+Q1: db.member.insertMany([{"memID": 32977," memName":{"firstname": "Sofia","lastname":"Myers"}, "income": 230000, "nationalIDNum": "YDD16CRG7SC","memshipYears":5, "sharepercent":10, "KYCcheck":true,"accDetails":[{"accNum":3489171,"accType":"current","interest":9,"balance":12398}],"loanDetails":[{"loanNum":"959ef87b","type":"house","interest":11.5,"amount":900000,"tenure":72}]}
+,{"memID": 24137," memName":{"firstname": "Wilson","lastname": "Morris"},"income": 800000, "nationalIDNum": "QOZ73SKE7KC","memshipYears":10,"sharepercent":10, "KYCcheck":false,"accDetails":[{"accNum": 3489172,"accType":"savings" ,"interest":6,"balance":234500}]}
+,{"memID":23034,"memName":{"firstname":"Andrianna","lastname":"Henderson"},"income":1908900, "nationalIDNum":"BTM91UHF8SP","memshipYears":15,"sharepercent":10, "KYCcheck":true,"accDetails":[{"accNum":3489173,"accType":"savings","interest":6,"balance":89760}]}
+,{"memID":37464,"memName":{"firstname":"Antony","lastname":"Miller"},"income":890000,"nationalIDNum": "KJH49EUK2NV","memshipYears":18,"sharepercent":10, "KYCcheck":false,"accDetails":[{"accNum": 3489180,"accType":"savings","interest":6,"balance":1230},{"accNum":3489188,"accType":"current","interest":9,"balance":67980}],"loanDetails":[{"loanNum":"fe111ff8","type":"house","interest":11.5,"amount":500000,"tenure":36},{"loanNum":"5eb7a297","type":"personal","interest":6,"amount":600000,"tenure":72}]}
+]);
+Q2:db.member.find( { memshipYears:{$lte:5} } );
+Q3: db.member.update({memID:1000985},{set:{"income": 1000985, "nationalIDNum": "KEB25PJH6ER", "memshipYears":6, "KYCcheck": true}},{upsert:true});
+Q4:db.member.update({KYCcheck:false},{$unset:{"nationalIDNum":""}},{multi:true});
+Q5:db.member.update( {memID:16895}, {$addToSet: {loanDetails:{"loanNum":"1a896835","type":"gold","interest":16,"amount":700000,"tenure":90}} } );
+Q6:db.member.deleteMany({income:{$lt:200000}});
